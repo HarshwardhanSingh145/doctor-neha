@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dr. Neha Sharma — Premium Clinic Website
 
-## Getting Started
+A minimal, modern, and luxury doctor clinic website for **Dr. Neha Sharma** in **Makrana, Rajasthan (PIN: 341505)**.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- **Cinematic Pinned Hero (GSAP ScrollTrigger)**:
+  - Phase 1: Giant `DR. NEHA SHARMA` background typography layered with 3D depth behind the doctor's portrait.
+  - Phase 2: Smooth scale/dissolve transition into the clinic philosophy: *"Professional Care with a Personal Approach"*.
+  - Phase 3 & 4: Doctor portrait glides to the left side as the right-side profile and clinic appointment card seamlessly slides in.
+- **Interactive 3D DNA Canvas (`src/dna.js`)**:
+  - Continuous 60fps mathematical double-helix simulation.
+  - 3D perspective depth, glowing node spheres, gradient hydrogen bond rungs, and scroll-velocity responsive acceleration.
+- **Minimalist Medical Sections**:
+  - **About Section**: Patient-centered healthcare philosophy in Makrana.
+  - **Consultation & Services**: Structured clinical offerings (*Primary Health Consultation*, *Clinical Diagnosis & Review*, *Follow-up Care*, *Preventative Guidance*).
+  - **Clinic & Location**: Detailed information for the Makrana practice with interactive visual map styling and consultation timings.
+  - **Appointment Booking Modal**: Interactive booking form with date/time pickers and instant confirmation feedback.
+- **100% Mobile & Desktop Responsive**:
+  - Fully touch-friendly and fluid across mobile, tablet, and desktop viewports.
+
+---
+
+## 🚀 Getting Started
+
+Simply open `index.html` in any modern web browser or run a local static server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Using Python
+python3 -m http.server 3000
+
+# Or using Node.js / npx
+npx serve .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000/` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```
+├── assets/
+│   └── doctor_portrait.png   # Transparent cutout portrait
+├── src/
+│   ├── dna.js                # 3D Canvas double-helix animation engine
+│   ├── main.js               # GSAP ScrollTrigger timeline & modal logic
+│   └── style.css             # Vanilla CSS luxury medical design system
+├── index.html                # Semantic HTML5 layout
+├── .gitignore
+└── README.md
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📜 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Private Practice Website • Dr. Neha Sharma Clinic, Makrana, Rajasthan.
