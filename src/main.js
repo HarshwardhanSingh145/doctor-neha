@@ -1,11 +1,10 @@
 /**
  * Main Application Orchestrator & GSAP Animation System
  * Dr. Neha Sharma Clinic Website • Makrana, Rajasthan
- * Enhanced for 100% Mobile & Desktop Performance
+ * High-Performance, Lag-Free Mobile & Desktop Scroll Engine
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Ensure GSAP and ScrollTrigger are loaded
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
     console.error('GSAP / ScrollTrigger not loaded');
     return;
@@ -19,13 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Header scroll appearance
+  // Header scroll appearance with rAF throttling
   const header = document.getElementById('siteHeader');
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 35) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
   }, { passive: true });
 
@@ -42,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const state3 = document.getElementById('storyState3');
 
   if (heroTrack && portraitContainer) {
+    
     // DESKTOP & TABLET ANIMATION (> 768px)
     mm.add('(min-width: 769px)', () => {
       const isTablet = window.innerWidth <= 1024;
@@ -53,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
           trigger: heroTrack,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1.2,
+          scrub: 0.9,
           onUpdate: (self) => {
             if (typeof window.updateDnaScroll === 'function') {
               window.updateDnaScroll(self.progress, self.getVelocity());
@@ -63,34 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // Initial state
-      gsap.set(heroBgText, { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' });
+      gsap.set(heroBgText, { opacity: 1, scale: 1, y: 0 });
       gsap.set(portraitContainer, { x: 0, y: 0, scale: 1, opacity: 1 });
       gsap.set(state1, { opacity: 1, visibility: 'visible', y: 0 });
-      gsap.set(state2, { opacity: 0, visibility: 'hidden', y: 40, filter: 'blur(8px)' });
-      gsap.set(state3, { opacity: 0, visibility: 'hidden', x: 50, scale: 0.96 });
+      gsap.set(state2, { opacity: 0, visibility: 'hidden', y: 35 });
+      gsap.set(state3, { opacity: 0, visibility: 'hidden', x: 45, scale: 0.96 });
 
       heroTimeline
         // Phase 1 -> 2
         .to(state1, {
           opacity: 0,
-          y: -30,
+          y: -25,
           duration: 0.15,
           ease: 'power2.in',
           onComplete: () => state1.classList.remove('active')
         }, 0.05)
         .to(heroBgText, {
-          opacity: 0.1,
-          scale: 1.12,
-          y: -60,
-          filter: 'blur(6px)',
-          duration: 0.3,
+          opacity: 0.12,
+          scale: 1.1,
+          y: -50,
+          duration: 0.28,
           ease: 'power1.inOut'
         }, 0.1)
         .to(state2, {
           opacity: 1,
           visibility: 'visible',
           y: 0,
-          filter: 'blur(0px)',
           duration: 0.25,
           ease: 'power2.out',
           onStart: () => state2.classList.add('active')
@@ -100,9 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Phase 2 -> 3/4
         .to(state2, {
           opacity: 0,
-          y: -30,
-          filter: 'blur(6px)',
-          duration: 0.2,
+          y: -25,
+          duration: 0.18,
           ease: 'power2.in',
           onComplete: () => state2.classList.remove('active')
         }, 0.55)
@@ -110,29 +114,29 @@ document.addEventListener('DOMContentLoaded', () => {
           x: targetPortraitX,
           y: 0,
           scale: targetPortraitScale,
-          duration: 0.4,
+          duration: 0.38,
           ease: 'power2.inOut'
-        }, 0.6)
+        }, 0.58)
         .to(state3, {
           opacity: 1,
           visibility: 'visible',
           x: 0,
           scale: 1,
-          duration: 0.35,
+          duration: 0.32,
           ease: 'power3.out',
           onStart: () => state3.classList.add('active')
-        }, 0.68)
+        }, 0.66)
         .to({}, { duration: 0.1 });
     });
 
-    // MOBILE ANIMATION (<= 768px)
+    // MOBILE ANIMATION (<= 768px) — Strictly Centered & GPU-Optimized
     mm.add('(max-width: 768px)', () => {
       const heroTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: heroTrack,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1.1,
+          scrub: 0.7, // Instant 1:1 smooth touch response
           onUpdate: (self) => {
             if (typeof window.updateDnaScroll === 'function') {
               window.updateDnaScroll(self.progress, self.getVelocity());
@@ -141,67 +145,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Initial mobile setup
-      gsap.set(heroBgText, { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' });
-      gsap.set(portraitContainer, { x: '-50%', left: '50%', y: 0, scale: 1, opacity: 1 });
+      // Initial mobile setup: Centered Horizontally
+      gsap.set(heroBgText, { opacity: 1, scale: 1, y: 0 });
+      gsap.set(portraitContainer, { xPercent: -50, left: '50%', x: 0, y: 0, scale: 1, opacity: 1 });
       gsap.set(state1, { opacity: 1, visibility: 'visible', y: 0 });
-      gsap.set(state2, { opacity: 0, visibility: 'hidden', y: 30, filter: 'blur(6px)' });
-      gsap.set(state3, { opacity: 0, visibility: 'hidden', y: 40 });
+      gsap.set(state2, { opacity: 0, visibility: 'hidden', y: 25 });
+      gsap.set(state3, { opacity: 0, visibility: 'hidden', y: 35 });
 
       heroTimeline
-        // Phase 1 -> 2: Fade entry info, fade oversized text, reveal State 2
+        // Phase 1 -> 2: Fade entry info & name, reveal State 2 centered
         .to(state1, {
           opacity: 0,
-          y: -20,
-          duration: 0.15,
+          y: -15,
+          duration: 0.14,
           ease: 'power2.in',
           onComplete: () => state1.classList.remove('active')
         }, 0.05)
         .to(heroBgText, {
           opacity: 0.08,
-          scale: 1.08,
-          y: -40,
-          filter: 'blur(4px)',
-          duration: 0.28,
+          scale: 1.06,
+          y: -30,
+          duration: 0.25,
           ease: 'power1.inOut'
-        }, 0.1)
+        }, 0.08)
         .to(state2, {
           opacity: 1,
           visibility: 'visible',
           y: 0,
-          filter: 'blur(0px)',
-          duration: 0.25,
+          duration: 0.22,
           ease: 'power2.out',
           onStart: () => state2.classList.add('active')
-        }, 0.22)
+        }, 0.2)
         .to({}, { duration: 0.15 })
 
-        // Phase 2 -> 3/4: State 2 fades out, Portrait floats up to soft background, Doctor card slides up
+        // Phase 2 -> 3/4: State 2 fades, portrait remains CENTERED and scales smoothly, doctor card slides up
         .to(state2, {
           opacity: 0,
-          y: -25,
-          filter: 'blur(4px)',
-          duration: 0.18,
+          y: -20,
+          duration: 0.16,
           ease: 'power2.in',
           onComplete: () => state2.classList.remove('active')
-        }, 0.52)
+        }, 0.5)
         .to(portraitContainer, {
-          y: '-26vh',
-          x: '-50%',
+          xPercent: -50,
           left: '50%',
-          scale: 0.62,
-          opacity: 0.3,
-          duration: 0.38,
+          x: 0,
+          y: '-20vh',
+          scale: 0.72,
+          opacity: 0.35,
+          duration: 0.35,
           ease: 'power2.inOut'
-        }, 0.55)
+        }, 0.52)
         .to(state3, {
           opacity: 1,
           visibility: 'visible',
           y: 0,
-          duration: 0.35,
+          duration: 0.32,
           ease: 'power3.out',
           onStart: () => state3.classList.add('active')
-        }, 0.64)
+        }, 0.62)
         .to({}, { duration: 0.1 });
     });
   }
@@ -219,8 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 35,
-      duration: 0.8,
+      y: 30,
+      duration: 0.7,
       ease: 'power3.out'
     });
   });
@@ -234,9 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 35,
-      duration: 0.75,
-      delay: i * 0.1,
+      y: 30,
+      duration: 0.7,
+      delay: i * 0.08,
       ease: 'power3.out'
     });
   });
@@ -250,9 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 30,
-      duration: 0.7,
-      delay: i * 0.08,
+      y: 25,
+      duration: 0.65,
+      delay: i * 0.06,
       ease: 'power3.out'
     });
   });
@@ -266,9 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      y: 35,
-      duration: 0.8,
-      delay: i * 0.12,
+      y: 30,
+      duration: 0.7,
+      delay: i * 0.1,
       ease: 'power3.out'
     });
   });
@@ -283,9 +285,9 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleActions: 'play none none none'
       },
       opacity: 0,
-      scale: 0.96,
-      y: 25,
-      duration: 0.8,
+      scale: 0.97,
+      y: 20,
+      duration: 0.7,
       ease: 'power3.out'
     });
   }
@@ -301,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const consultTypeSelect = document.getElementById('consultType');
   const preferredDateInput = document.getElementById('preferredDate');
 
-  // Set min date to today
   if (preferredDateInput) {
     const today = new Date().toISOString().split('T')[0];
     preferredDateInput.setAttribute('min', today);
@@ -354,7 +355,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Appointment Form Submission Handling
   if (appointmentForm) {
     appointmentForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -394,8 +394,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (submitBtn) {
             submitBtn.innerHTML = originalText;
           }
-        }, 2600);
-      }, 750);
+        }, 2500);
+      }, 650);
     });
   }
 
@@ -416,8 +416,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Refresh on resize/orientation change
+  // Debounced resize handler
+  let resizeTimer;
   window.addEventListener('resize', () => {
-    ScrollTrigger.refresh();
-  });
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+  }, { passive: true });
 });
