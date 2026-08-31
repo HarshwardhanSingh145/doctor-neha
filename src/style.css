@@ -1414,19 +1414,19 @@ a {
   }
 
   .hero-bg-typography {
-    top: 38%;
+    top: 42%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width: 96%;
     max-width: 100%;
     padding: 0 0.5rem;
     box-sizing: border-box;
   }
 
   .big-line {
-    font-size: clamp(2.45rem, 11.8vw, 4.1rem);
-    letter-spacing: -0.01em;
-    line-height: 0.92;
+    font-size: clamp(1.95rem, 9.6vw, 3.3rem);
+    letter-spacing: -0.02em;
+    line-height: 0.90;
     color: #ffffff;
     text-shadow: 
       0 3px 20px rgba(15, 23, 42, 0.16),
@@ -1434,14 +1434,15 @@ a {
   }
 
   .portrait-container {
-    height: 76vh;
-    height: 76dvh;
-    max-height: 740px;
-    bottom: 0;
+    height: auto;
+    max-height: 60vh;
+    max-height: 60dvh;
+    bottom: 23vh;
+    bottom: calc(22vh + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 440px;
+    max-width: 380px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -1449,9 +1450,11 @@ a {
   }
 
   .doctor-portrait-img {
-    height: 100%;
-    width: auto;
-    max-width: 92vw;
+    height: auto;
+    width: 86vw;
+    max-width: 360px;
+    max-height: 52vh;
+    max-height: 52dvh;
     object-fit: contain;
     object-position: bottom center;
     margin: 0 auto;
