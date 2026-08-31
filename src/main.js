@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Initial mobile setup
       gsap.set(heroBgText, { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' });
-      gsap.set(portraitContainer, { xPercent: -50, left: '50%', x: 0, y: 0, scale: 1, opacity: 1 });
+      gsap.set(portraitContainer, { x: '-50%', left: '50%', y: 0, scale: 1, opacity: 1 });
       gsap.set(state1, { opacity: 1, visibility: 'visible', y: 0 });
       gsap.set(state2, { opacity: 0, visibility: 'hidden', y: 30, filter: 'blur(6px)' });
       gsap.set(state3, { opacity: 0, visibility: 'hidden', y: 40 });
@@ -187,9 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0.52)
         .to(portraitContainer, {
           y: '-26vh',
-          xPercent: -50,
+          x: '-50%',
           left: '50%',
-          x: 0,
           scale: 0.62,
           opacity: 0.3,
           duration: 0.38,

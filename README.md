@@ -1,60 +1,65 @@
-# Dr. Neha Sharma — Premium Clinic Website
+# Dr. Neha Sharma — Premium Medical Clinic Website
 
-A minimal, modern, and luxury doctor clinic website for **Dr. Neha Sharma** in **Makrana, Rajasthan (PIN: 341505)**.
+> **Location:** Makrana, Rajasthan, India (PIN: 341505)  
+> **Aesthetic:** Minimal • Medical • Editorial • Scientific • High-End
+
+A high-end private doctor clinic website for **Dr. Neha Sharma** featuring a full-screen pinned storytelling hero with GSAP ScrollTrigger, real-time 3D Canvas DNA double-helix simulation, transparent portrait layering, and a responsive appointment booking system.
 
 ---
 
-## ✨ Features
+## 🌟 Key Features
 
-- **Cinematic Pinned Hero (GSAP ScrollTrigger)**:
-  - Phase 1: Giant `DR. NEHA SHARMA` background typography layered with 3D depth behind the doctor's portrait.
-  - Phase 2: Smooth scale/dissolve transition into the clinic philosophy: *"Professional Care with a Personal Approach"*.
-  - Phase 3 & 4: Doctor portrait glides to the left side as the right-side profile and clinic appointment card seamlessly slides in.
+- **Cinematic Pinned Hero Storytelling**:
+  - **Phase 1**: Giant editorial `DR. NEHA SHARMA` background typography layered behind the doctor portrait with sub-label `DOCTOR • MAKARANA`.
+  - **Phase 2**: Smooth scrub transition fading giant lettering into philosophy message: `PROFESSIONAL CARE WITH A PERSONAL APPROACH`.
+  - **Phase 3 & 4**: Doctor portrait gracefully glides to the left side while revealing the Makrana Clinic profile card and direct consultation CTA.
 - **Interactive 3D DNA Canvas (`src/dna.js`)**:
-  - Continuous 60fps mathematical double-helix simulation.
-  - 3D perspective depth, glowing node spheres, gradient hydrogen bond rungs, and scroll-velocity responsive acceleration.
-- **Minimalist Medical Sections**:
-  - **About Section**: Patient-centered healthcare philosophy in Makrana.
-  - **Consultation & Services**: Structured clinical offerings (*Primary Health Consultation*, *Clinical Diagnosis & Review*, *Follow-up Care*, *Preventative Guidance*).
-  - **Clinic & Location**: Detailed information for the Makrana practice with interactive visual map styling and consultation timings.
-  - **Appointment Booking Modal**: Interactive booking form with date/time pickers and instant confirmation feedback.
-- **100% Mobile & Desktop Responsive**:
-  - Fully touch-friendly and fluid across mobile, tablet, and desktop viewports.
+  - High-performance HTML5 Canvas double-helix rendering 3D depth-projected glowing nodes, hydrogen bond rungs, ambient wave breathing, and scroll-velocity acceleration.
+- **Transparent Doctor Portrait (`assets/doctor_portrait.png`)**:
+  - Cleanly isolated portrait with smooth alpha edges interweaving with 3D depth.
+- **Mobile-First Responsive Design**:
+  - Tailored `gsap.matchMedia()` animation rules for mobile and desktop screens.
+  - Safe-area support, dynamic viewport height (`100dvh`), and iOS zoom prevention (`font-size: 16px` inputs).
+- **Appointment Booking System**:
+  - Frictionless booking modal with time slot selector, reason for visit, and instant confirmation feedback.
+- **Editorial Clinical Content**:
+  - About Dr. Neha Sharma & Practice Philosophy.
+  - Clinical services & consultation breakdown (*Primary Care*, *Diagnostic Review*, *Follow-up Care*, *Preventative Guidance*).
+  - Makrana Clinic location card with consultation hours and Rajasthan visual map.
 
 ---
 
 ## 🚀 Getting Started
 
-Simply open `index.html` in any modern web browser or run a local static server:
+No build step required — built with modern Vanilla JavaScript, CSS, and HTML5.
 
+### Run Locally
 ```bash
 # Using Python
 python3 -m http.server 3000
 
-# Or using Node.js / npx
-npx serve .
+# OR using Node / NPX
+npx serve . -p 3000
 ```
-
-Visit `http://localhost:3000/` in your browser.
+Open **`http://localhost:3000`** in your browser.
 
 ---
 
 ## 📁 Project Structure
 
 ```
+├── index.html                  # Semantic HTML5 layout & metadata
 ├── assets/
-│   └── doctor_portrait.png   # Transparent cutout portrait
+│   └── doctor_portrait.png     # Transparent doctor portrait layer
 ├── src/
-│   ├── dna.js                # 3D Canvas double-helix animation engine
-│   ├── main.js               # GSAP ScrollTrigger timeline & modal logic
-│   └── style.css             # Vanilla CSS luxury medical design system
-├── index.html                # Semantic HTML5 layout
-├── .gitignore
-└── README.md
+│   ├── style.css               # Complete CSS design system & responsive rules
+│   ├── dna.js                  # 3D Canvas DNA simulation engine
+│   └── main.js                 # GSAP ScrollTrigger timeline & modal logic
+├── README.md                   # Project documentation
+└── .gitignore                  # Git ignore rules
 ```
 
 ---
 
-## 📜 License
-
-Private Practice Website • Dr. Neha Sharma Clinic, Makrana, Rajasthan.
+## 📄 License & Attribution
+All rights reserved © Dr. Neha Sharma Clinic, Makrana, Rajasthan, India.

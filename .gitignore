@@ -1,17 +1,8 @@
-# OS & IDE
 .DS_Store
-.vscode/
-.idea/
-
-# Node
+Thumbs.db
 node_modules/
 dist/
-
-# Scratch & Logs
+.next/
 *.log
-*.tmp
-hero_*.png
-doctor_portrait_cleaned.png
-doctor_portrait_hq.png
-reference_*.jpg
-"Family Health Website.jpg"
+.tempmediaStorage/
+scratch/
